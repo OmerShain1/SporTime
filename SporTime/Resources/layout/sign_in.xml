@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="20dp"
+    android:background="#FFFFFF">
+
+	<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+		<!-- Logo -->
+		<ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/Logo"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp" />
+
+		<!-- Username -->
+		<EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Username"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="20dp" />
+
+		<!-- Password -->
+		<EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Password"
+            android:padding="10dp"
+            android:inputType="textPassword"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="30dp" />
+
+		<!-- Sign In Button -->
+		<Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Sign In"
+            android:textAllCaps="false"
+            android:background="#007AFF"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="20dp" />
+
+		<!-- Go to Sign Up -->
+		<TextView
+            android:id="@+id/tvGoToSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? Sign up"
+            android:textColor="#007AFF"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp" />
+
+	</LinearLayout>
+
+</ScrollView>

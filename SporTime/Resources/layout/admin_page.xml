@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+	<!-- Top logo -->
+	<ImageView
+        android:id="@+id/topLogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/Logo"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp" />
+
+	<!-- Scrollable main content -->
+	<ScrollView
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNav"
+        android:layout_below="@id/topLogo"
+        android:padding="16dp">
+
+		<LinearLayout
+            android:id="@+id/contentLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+			<!-- Admin Page Title -->
+			<TextView
+                android:id="@+id/adminTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin Dashboard"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#222222"
+                android:layout_marginBottom="32dp"
+                android:gravity="center" />
+
+			<!-- Users List Button -->
+			<Button
+                android:id="@+id/btnUsersList"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Users List"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:backgroundTint="#1E88E5"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="20dp"
+                android:stateListAnimator="@null" />
+
+			<!-- Fields List Button -->
+			<Button
+                android:id="@+id/btnFieldsList"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Fields List"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:backgroundTint="#1E88E5"
+                android:textColor="#FFFFFF"
+                android:stateListAnimator="@null" />
+
+		</LinearLayout>
+
+	</ScrollView>
+
+	<!-- Fixed bottom navigation bar -->
+	<LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#DDDDDD"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+		<!-- Home button -->
+		<LinearLayout
+            android:id="@+id/navHome"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+			<ImageView
+                android:id="@+id/home"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/home"
+                android:contentDescription="Home" />
+
+			<TextView
+                android:id="@+id/homeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="12sp"
+                android:textColor="#222222"
+                android:layout_marginTop="2dp"/>
+		</LinearLayout>
+
+		<!-- New Reservation button -->
+		<LinearLayout
+            android:id="@+id/navNewReservation"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+			<ImageView
+                android:id="@+id/image_calander"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/calendar"
+                android:contentDescription="New Reservation" />
+
+			<TextView
+                android:id="@+id/newResText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Reservation"
+                android:textSize="12sp"
+                android:textColor="#222222"
+                android:layout_marginTop="2dp"/>
+		</LinearLayout>
+
+		<!-- Account button -->
+		<LinearLayout
+            android:id="@+id/navAccount"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+			<ImageView
+                android:id="@+id/image_account"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/account"
+                android:contentDescription="Account" />
+
+			<TextView
+                android:id="@+id/accountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textSize="12sp"
+                android:textColor="#222222"
+                android:layout_marginTop="2dp"/>
+		</LinearLayout>
+
+	</LinearLayout>
+
+</RelativeLayout>
