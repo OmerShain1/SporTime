@@ -61,7 +61,7 @@ namespace SporTime
                 {
                     
                     Toast.MakeText(this, "Login Successful!", ToastLength.Short).Show();
-
+                    StartActivity(typeof(MainPageActivity));
                     // TODO: Navigate to the main app screen (e.g., FieldListActivity)
                     // StartActivity(typeof(FieldListActivity));
                 }

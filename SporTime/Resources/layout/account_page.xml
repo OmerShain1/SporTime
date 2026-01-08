@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+	<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavigation">
+
+		<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+			<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"
+                android:textColor="#333333"/>
+
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="First Name" />
+			<EditText
+                android:id="@+id/etFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First Name"
+                android:layout_marginBottom="15dp"/>
+
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Last Name" />
+			<EditText
+                android:id="@+id/etLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Name"
+                android:layout_marginBottom="15dp"/>
+
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Email" />
+			<EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="30dp"/>
+
+			<Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Changes"
+                android:backgroundTint="#28A745"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="10dp"/>
+
+			<Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:backgroundTint="#6C757D"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="10dp"/>
+
+			<Button
+    android:id="@+id/btnDelete"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:text="Delete Account"
+    android:drawableStart="@drawable/delete"
+    android:drawablePadding="8dp"
+    android:backgroundTint="#DC3545"
+    android:textColor="#FFFFFF"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:textSize="14sp" />
+
+		</LinearLayout>
+	</ScrollView>
+
+	<LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#D1D9E0"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+		<LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+			<ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/home" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Home" android:textSize="11sp" />
+		</LinearLayout>
+
+		<LinearLayout
+            android:id="@+id/navNew"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+			<ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/calendar" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="New Reservation" android:textSize="11sp" />
+		</LinearLayout>
+
+		<LinearLayout
+            android:id="@+id/navAccount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+			<ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/account" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textSize="11sp" />
+		</LinearLayout>
+	</LinearLayout>
+</RelativeLayout>
