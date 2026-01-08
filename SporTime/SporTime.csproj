@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountPageActivity.cs" />
+    <Compile Include="AvailabilityPageActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainPageActivity.cs" />
     <Compile Include="Model\Field.cs" />
@@ -135,6 +136,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listview_field_item.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\availability_page.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\day_item.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <Content Include="Resources\layout\sign_up.xml" />
