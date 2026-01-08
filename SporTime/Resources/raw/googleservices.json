@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "154486894286",
+    "project_id": "sportime-152bd",
+    "storage_bucket": "sportime-152bd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154486894286:android:4439554e3773db4c22ea9f",
+        "android_client_info": {
+          "package_name": "com.companyname.omerfinalproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0-RsDqnDMmZskbnzzQKvfdq4wThc9ZA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154486894286:android:a1b40e4074920b9822ea9f",
+        "android_client_info": {
+          "package_name": "com.companyname.sportime"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0-RsDqnDMmZskbnzzQKvfdq4wThc9ZA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154486894286:android:4b46e635d211528222ea9f",
+        "android_client_info": {
+          "package_name": "com.companyname.sportime1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0-RsDqnDMmZskbnzzQKvfdq4wThc9ZA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -24,10 +24,10 @@
 
 		<!-- Username -->
 		<EditText
-            android:id="@+id/etUsername"
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Username"
+            android:hint="Email"
             android:padding="10dp"
             android:background="@android:drawable/edit_text"
             android:layout_marginBottom="20dp" />
@@ -55,8 +55,8 @@
             android:layout_marginBottom="20dp" />
 
 		<!-- Go to Sign Up -->
-		<TextView
-            android:id="@+id/tvGoToSignUp"
+		<Button
+            android:id="@+id/btnGoToSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an account? Sign up"
