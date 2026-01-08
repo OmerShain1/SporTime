@@ -17,6 +17,8 @@ namespace SporTime
     public class SignInActivity : Activity
     {
         private const string TAG = "OmerApp";
+        string Email = "Omer@gmail.com", Password = "123456";
+        bool DebugMode = true;
         EditText UEmail, UPassword;
         Button btnSignIn, btnGoToSignUp;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,6 +34,11 @@ namespace SporTime
         {
             UEmail = FindViewById<EditText>(Resource.Id.etEmail);
             UPassword = FindViewById<EditText>(Resource.Id.etPassword);
+            if (DebugMode)
+            {
+                UEmail.Text = Email;
+                UPassword.Text = Password;
+            }
 
             btnSignIn = FindViewById<Button>(Resource.Id.btnSignIn);
             btnGoToSignUp = FindViewById<Button>(Resource.Id.btnGoToSignUp);
