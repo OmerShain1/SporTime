@@ -76,11 +76,11 @@ namespace SporTime
             var navHome = FindViewById<LinearLayout>(Resource.Id.navHome);
 
             navNew.Click += (s, e) => {
-                StartActivity(typeof(AccountPageActivity));
+                StartActivity(typeof(PickFieldPageActivity));
             };
 
-            navAccount.Click += (s, e) => {
-                StartActivity(typeof(AccountPageActivity));
+            navHome.Click += (s, e) => {
+                StartActivity(typeof(MainPageActivity));
             };
         }
     }
