@@ -49,8 +49,8 @@ namespace SporTime
             var navAccount = FindViewById<LinearLayout>(Resource.Id.navAccount);
             var navHome = FindViewById<LinearLayout>(Resource.Id.navHome);
 
-            navNew.Click += (s, e) => {
-                // StartActivity(typeof(NewReservationActivity));
+            navHome.Click += (s, e) => {
+                StartActivity(typeof(MainPageActivity));
             };
 
             navAccount.Click += (s, e) => {
