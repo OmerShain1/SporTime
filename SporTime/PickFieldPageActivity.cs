@@ -17,6 +17,7 @@ namespace SporTime
     public class PickFieldPageActivity : Activity
     {
         ListView lvFields;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,7 +35,14 @@ namespace SporTime
             lvFields.Adapter = new FieldAdapter(this, fieldList);
 
             InitializeNavigation();
+            InitializeViews();
         }
+
+        private void InitializeViews()
+        {
+            
+        }
+
         private void InitializeNavigation()
         {
             var navNew = FindViewById<LinearLayout>(Resource.Id.navNew);

@@ -28,7 +28,7 @@ namespace SporTime
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.availability_page);
 
-            // 1. Get data passed from the previous NewReservationActivity
+            // 1. Get data passed from the previous PickFieldActivity
             selectedFieldId = Intent.GetStringExtra("FieldId") ?? "0";
             selectedFieldName = Intent.GetStringExtra("FieldName") ?? "Field";
 
@@ -92,6 +92,8 @@ namespace SporTime
                     selectedDate = date;
                     GenerateDateButtons(); // Refresh UI to show new selection
                     LoadTimeSlots();       // Refresh time slots for this date
+
+                    //http request for availability here
                 };
 
                 dateContainer.AddView(btnDate);
@@ -102,7 +104,9 @@ namespace SporTime
         {
             timeSlots = new List<string>();
 
-            // Business Rule: Fixed 1-hour blocks from 08:00 to 22:00
+            //this is dummy data, replace with actual availability logic with http request
+
+
             for (int h = 8; h < 22; h++)
             {
                 string slot = $"{h:D2}:00 - {h + 1:D2}:00";
@@ -110,29 +114,48 @@ namespace SporTime
             }
 
             // Using a simple ArrayAdapter with your custom time_slot_item layout
-            var adapter = new ArrayAdapter<string>(this, Resource.Layout.day_item, Resource.Id.lvTimeSlots, timeSlots);
+            var adapter = new ArrayAdapter<string>(this, Resource.Layout.day_item, Resource.Id.btnTimeSlot, timeSlots);
             lvTimeSlots.Adapter = adapter;
+
+            lvTimeSlots.ItemClick += LvTimeSlots_ItemClick;
         }
 
         private void LvTimeSlots_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            // 1. Get the specific string (e.g., "10:00 - 11:00") from the list
             string pickedTime = timeSlots[e.Position];
 
-            // Create a confirmation dialog
+            // 2. Create a confirmation popup
             var alert = new AlertDialog.Builder(this);
             alert.SetTitle("Confirm Reservation");
             alert.SetMessage($"Do you want to book {selectedFieldName} on {selectedDate.ToShortDateString()} at {pickedTime}?");
 
-            alert.SetPositiveButton("Confirm", (senderAlert, args) => {
-                // TODO: Here you will send the POST request to your ASP.NET Backend
-                Toast.MakeText(this, "Reservation Saved Successfully!", ToastLength.Long).Show();
+            alert.SetPositiveButton("OK", (senderAlert, args) => {
+                // --- THE NEW LOGIC STARTS HERE ---
 
-                // Return to Home screen
-                //StartActivity(typeof(PickTimeActivity));
+                // 1. Create an Intent to return to the Main Page
+                var intent = new Intent(this, typeof(MainPageActivity));
+
+                // 2. Add the "Extras" (the data packet)
+                
+                intent.PutExtra("FieldName", selectedFieldName);
+                intent.PutExtra("ReservationDate", selectedDate.ToString("dd/MM/yyyy"));
+                intent.PutExtra("ReservationTime", pickedTime);
+
+                // 3. Clear the Activity History
+                // This prevents the user from clicking 'Back' and seeing the time picker again
+                intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
+
+                // 4. Send the user home
+                StartActivity(intent);
+
+                // 5. Close this activity
                 Finish();
             });
 
-            alert.SetNegativeButton("Cancel", (senderAlert, args) => { });
+            alert.SetNegativeButton("Cancel", (senderAlert, args) => {
+                // Do nothing if they cancel
+            });
 
             alert.Show();
         }

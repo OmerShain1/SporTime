@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Views;
 using Android.Widget;
 using SporTime.Model;
@@ -35,6 +36,15 @@ namespace SporTime.ViewModel
             {
                 // Navigate to a page showing specific hours for this field
                 Toast.MakeText(context, $"Opening schedule for {field.Name}", ToastLength.Short).Show();
+                var intent = new Intent(context, typeof(AvailabilityPageActivity));
+
+                // 2. Pack the field data as "Extras"
+                // We pass the ID and Name so the next page knows which field it is looking at
+                intent.PutExtra("FieldId", field.Field_Id.ToString());
+                intent.PutExtra("FieldName", field.Name);
+
+                // 3. Start the Activity
+                context.StartActivity(intent);
             };
 
             return view;
