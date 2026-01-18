@@ -2,6 +2,7 @@
 using Android.OS;
 using Android.Util;
 using Android.Widget;
+using SporTime.Business_Logic;
 using SporTime.ViewModel; // Important: This lets us use FireBaseHelper
 using System;
 
@@ -55,8 +56,11 @@ namespace SporTime
                 return;
             }
 
-            
-
+            //if(ValidateInputs.ValidateEmail(email) == false || ValidateInputs.ValidatePhoneNumber())
+            //{
+            //    Toast.MakeText(this, "Please enter a valid email", ToastLength.Short).Show();
+            //    return;
+            //}
             // 3. Register with Firebase
             try
             {
@@ -75,6 +79,7 @@ namespace SporTime
                 Log.Error("OmerApp", ex.ToString());
                 Toast.MakeText(this, "Error: " + ex.Message, ToastLength.Long).Show();
             }
+
         }
     }
 }

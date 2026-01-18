@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="AccountPageActivity.cs" />
     <Compile Include="AvailabilityPageActivity.cs" />
+    <Compile Include="Business Logic\ValidateInputs.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainPageActivity.cs" />
     <Compile Include="Model\Field.cs" />
