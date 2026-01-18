@@ -22,6 +22,11 @@ namespace SporTime.ViewModel
         public override int Count => fields.Count;
         public override long GetItemId(int position) => position;
         public override Java.Lang.Object GetItem(int position) => null;
+        public void UpdateList(List<Field> newFields)
+        {
+            this.fields = newFields;
+            NotifyDataSetChanged(); // Tells the ListView to redraw immediately
+        }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
