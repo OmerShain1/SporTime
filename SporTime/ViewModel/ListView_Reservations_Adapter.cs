@@ -42,12 +42,12 @@ namespace SporTime.ViewModel
             view.FindViewById<TextView>(Resource.Id.tvFieldName).Text = item.FieldName;
             view.FindViewById<TextView>(Resource.Id.tvDateTime).Text = $"{item.Start.Date} at {item.Start.TimeOfDay}";
 
-            var btnModify = view.FindViewById<Button>(Resource.Id.btnModify);
+            var btnModify = view.FindViewById<Button>(Resource.Id.btnDelete);
 
             // Note: Use a standard delegate to avoid event bubbling issues in lists
             btnModify.Click -= BtnModify_Click; // Unsubscribe first to avoid multiple triggers
             btnModify.Click += (s, e) => {
-                Toast.MakeText(context, "Modifying: " + item.FieldName, ToastLength.Short).Show();
+                Toast.MakeText(context, "Deleting: " + item.FieldName, ToastLength.Short).Show();
             };
 
             return view;
