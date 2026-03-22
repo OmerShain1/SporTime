@@ -8,17 +8,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace SporTime.Model
 {
     public class Reservation
     {
-        public string Reservation_Id { get; set; }
-        public string Field_Id { get; set; }
-        public string FieldName { get; set; }
-        public string User_Id { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        [JsonProperty("reservation_id")]
+        public int ReservationId { get; set; }
+
+        [JsonProperty("user_id")]
+        public string UserId { get; set; }
+
+        [JsonProperty("field_id")]
+        public int FieldId { get; set; }
+
+        public string FieldName { get; set; } // this can maybe be used and maybe stored in database
+
+        // DateTime handles both the specific day and the time of the reservation
+        [JsonProperty("starting_time")]
+        public DateTime StartingTime { get; set; }
 
     }
 }

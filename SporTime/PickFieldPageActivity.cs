@@ -33,9 +33,9 @@ namespace SporTime
             // FIX 2: Initialize the master data list here
             allFields = new List<Field>
             {
-                new Field { Field_Id = "12312", Name = "Arena Soccer 1", SportType = "Soccer" },
-                new Field { Field_Id = "3123", Name = "Main Tennis Court", SportType = "Tennis" },
-                new Field { Field_Id = "4444", Name = "Downtown Basketball", SportType = "Basketball" }
+                new Field { Field_Id = "12312", Name = "Arena Soccer 1" },
+                new Field { Field_Id = "3123", Name = "Main Tennis Court"},
+                new Field { Field_Id = "4444", Name = "Downtown Basketball"}
             };
 
             // Initially, the displayed list is a copy of everything

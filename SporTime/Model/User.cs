@@ -8,14 +8,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace SporTime.Model
 {
     public class User
     {
+        [JsonProperty("user_id")]
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+
+        [JsonProperty("email")]
         public string Email { get; set; }
         
     }

@@ -67,6 +67,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountActivityAdmin.cs" />
     <Compile Include="AccountPageActivity.cs" />
     <Compile Include="AvailabilityPageActivity.cs" />
     <Compile Include="Business Logic\ValidateInputs.cs" />
@@ -123,6 +124,9 @@
     <AndroidResource Include="Resources\layout\account_page.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\account_admin_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <Content Include="Resources\layout\admin_page.xml" />
     <AndroidResource Include="Resources\layout\sign_in_page.xml">
       <SubType>Designer</SubType>
@@ -155,6 +159,9 @@
     <Content Include="Resources\layout\user_list.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.4</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
     <PackageReference Include="Xamarin.AndroidX.Arch.Core.Runtime">
       <Version>2.2.0</Version>
