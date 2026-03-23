@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Util;
 using Android.Widget;
 using SporTime.Business_Logic;
+using SporTime.Service;
 using SporTime.ViewModel; // Important: This lets us use FireBaseHelper
 using System;
 
@@ -13,6 +14,7 @@ namespace SporTime
     {
         EditText UEmail, UPassword;
         Button btnRegister, btnGoToSignIn;
+        ApiService apiService = new ApiService();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -70,6 +72,7 @@ namespace SporTime
                 {
                     Toast.MakeText(this, "Registration Successful!", ToastLength.Short).Show();
                     // Go back to login screen or main menu
+                    apiService.CreateUserAsync(email, user.Uid); // Save user to your backend
                     Finish();
                 }
             }

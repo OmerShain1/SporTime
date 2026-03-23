@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using System.Threading.Tasks;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -12,7 +13,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using static Android.Gms.Common.Apis.Api;
 //147.236.126.156
 namespace SporTime.Service
@@ -54,9 +54,23 @@ namespace SporTime.Service
             return new List<Field>();
         }
 
-       
+
+        public async void CreateUserAsync(string email, string user_id)
+        {
+            try
+            {
+                string url = "http://192.168.1.56:8000/users";
+                HttpResponseMessage response = await _httpClient.PostAsync(url, new StringContent(
+                    JsonConvert.SerializeObject(new { email, user_id }),
+                    Encoding.UTF8,
+                    "application/json"
+                ));
+
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("ApiService", $"Error creating user: {ex.Message}");
+            }
+        }
     }
-
-
-
 }

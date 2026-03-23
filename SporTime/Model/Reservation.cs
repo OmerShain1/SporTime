@@ -15,7 +15,7 @@ namespace SporTime.Model
     public class Reservation
     {
         [JsonProperty("reservation_id")]
-        public string ReservationId { get; set; }
+        public int ReservationId { get; set; }
 
         [JsonProperty("user_id")]
         public string UserId { get; set; }
