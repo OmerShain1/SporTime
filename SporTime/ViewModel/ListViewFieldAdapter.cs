@@ -47,6 +47,8 @@ namespace SporTime.ViewModel
                 // We pass the ID and Name so the next page knows which field it is looking at
                 intent.PutExtra("FieldId", field.Field_Id.ToString());
                 intent.PutExtra("FieldName", field.Name);
+                intent.PutExtra("OpeningHour", field.OpeningHour.TimeOfDay.ToString());
+                intent.PutExtra("ClosingHour", field.ClosingHour.TimeOfDay.ToString());
 
                 // 3. Start the Activity
                 context.StartActivity(intent);

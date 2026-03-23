@@ -22,6 +22,7 @@ namespace SporTime
         List<string> timeSlots;
         string selectedFieldId;
         string selectedFieldName;
+        string OpeningHour, ClosingHour;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -31,6 +32,8 @@ namespace SporTime
             // 1. Get data passed from the previous PickFieldActivity
             selectedFieldId = Intent.GetStringExtra("FieldId") ?? "0";
             selectedFieldName = Intent.GetStringExtra("FieldName") ?? "Field";
+            OpeningHour = Intent.GetStringExtra("OpeningHour") ?? "08:00:00";
+            ClosingHour = Intent.GetStringExtra("ClosingHour") ?? "22:00:00";
 
             InitializeViews();
             GenerateDateButtons();
@@ -104,20 +107,43 @@ namespace SporTime
         {
             timeSlots = new List<string>();
 
-            //this is dummy data, replace with actual availability logic with http request
-
-
-            for (int h = 8; h < 22; h++)
+            // 1. Safely parse the string variables into C# TimeSpan objects.
+            // We use TryParse so the app doesn't crash if the string is empty or malformed.
+            if (!TimeSpan.TryParse(OpeningHour, out TimeSpan startTime))
             {
-                string slot = $"{h:D2}:00 - {h + 1:D2}:00";
-                timeSlots.Add(slot);
+                startTime = new TimeSpan(8, 0, 0); // Fallback to 08:00 if parsing fails
             }
 
-            // Using a simple ArrayAdapter with your custom time_slot_item layout
+            if (!TimeSpan.TryParse(ClosingHour, out TimeSpan endTime))
+            {
+                endTime = new TimeSpan(22, 0, 0); // Fallback to 22:00 if parsing fails
+            }
+
+            // 2. Loop from the opening time to the closing time
+            TimeSpan currentSlot = startTime;
+            TimeSpan slotDuration = new TimeSpan(1, 0, 0); // 1-hour duration
+
+            while (currentSlot < endTime)
+            {
+                TimeSpan nextSlot = currentSlot.Add(slotDuration);
+
+                // 3. Format the strings to look clean, like "08:00 - 09:00"
+                // The @"hh\:mm" format ensures it drops the seconds and adds leading zeros
+                string slotText = $"{currentSlot.ToString(@"hh\:mm")} - {nextSlot.ToString(@"hh\:mm")}";
+
+                timeSlots.Add(slotText);
+
+                // Move to the next hour block
+                currentSlot = nextSlot;
+            }
+
+            // 4. Update the UI
             var adapter = new ArrayAdapter<string>(this, Resource.Layout.day_item, Resource.Id.btnTimeSlot, timeSlots);
             lvTimeSlots.Adapter = adapter;
 
-            lvTimeSlots.ItemClick += LvTimeSlots_ItemClick;
+            // Note: I removed the `lvTimeSlots.ItemClick += LvTimeSlots_ItemClick;` from here.
+            // You already have it inside InitializeViews(). If you subscribe to it twice, 
+            // tapping a time slot will cause the confirmation popup to appear twice!
         }
 
         private void LvTimeSlots_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
