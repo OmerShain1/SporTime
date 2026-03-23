@@ -15,7 +15,7 @@ namespace SporTime.Model
     public class Field
     {
         [JsonProperty("field_id")]
-        public string Field_Id { get; set; }
+        public int Field_Id { get; set; }
 
         [JsonProperty("field_name")]
         public string Name { get; set; }

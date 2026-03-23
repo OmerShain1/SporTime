@@ -23,15 +23,16 @@ namespace SporTime.Service
 
         public async Task<List<Field>> GetFieldsAsync()
         {
+            Log.Debug("ApiService", "Starting to fetch fields from the server...");
             try
             {
                 // 2. The URL of your Python server
                 // IMPORTANT: See the note below about this address!
-                string url = "http://147.236.126.156/fields";
+                string url = "http://192.168.1.56:8000/fields";
 
                 // 3. Send the driver to get the data (this happens in the background)
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
-
+                Log.Debug("ApiService", $"Received response with status code: {response.StatusCode}");
                 if (response.IsSuccessStatusCode)
                 {
                     // 4. Open the box (read the JSON string)
@@ -41,11 +42,12 @@ namespace SporTime.Service
                     List<Field> fields = JsonConvert.DeserializeObject<List<Field>>(jsonResult);
 
                     return fields;
+                    Log.Debug("ApiService", $"Fetched {fields.Count} fields from the server.");
                 }
             }
             catch (Exception ex)
             {
-                Log.Error("ApiService", $"Error fetching fields: {ex.Message}");
+                Log.Debug("ApiService", $"Error fetching fields: {ex.Message}");
             }
 
             // Return an empty list if something went wrong

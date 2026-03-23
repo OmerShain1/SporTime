@@ -43,7 +43,7 @@ namespace SporTime
             if (isFirstLoad)
             {
                 // Initial Dummy Data
-                myReservations.Add(new Reservation { Reservation_Id = "101", FieldName = "Main Soccer Field", Start_Time = new DateTime(2026, 1, 15, 18, 0, 0), End_Time = new DateTime(2026, 1, 15, 19, 0, 0) });
+                myReservations.Add(new Reservation { ReservationId = "101", FieldName = "Main Soccer Field", StartingTime = new DateTime(2026, 1, 15, 18, 0, 0) });
                 isFirstLoad = false;
             }
 
@@ -80,10 +80,10 @@ namespace SporTime
 
                     myReservations.Add(new Reservation
                     {
-                        Reservation_Id = Guid.NewGuid().ToString().Substring(0, 5),
+                        ReservationId = Guid.NewGuid().ToString().Substring(0, 5),
                         FieldName = fieldName,
-                        Start_Time = startParsed,
-                        End_Time = endParsed
+                        StartingTime = startParsed,
+                        
                     });
 
                     // Clear these so they don't get re-added on rotation

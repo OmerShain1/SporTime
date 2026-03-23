@@ -15,13 +15,12 @@ namespace SporTime.Model
     public class Reservation
     {
         [JsonProperty("reservation_id")]
-        public int ReservationId { get; set; }
+        public string ReservationId { get; set; }
 
         [JsonProperty("user_id")]
         public string UserId { get; set; }
 
-        [JsonProperty("field_id")]
-        public int FieldId { get; set; }
+        public string FieldId { get; set; }
 
         public string FieldName { get; set; } // this can maybe be used and maybe stored in database
 

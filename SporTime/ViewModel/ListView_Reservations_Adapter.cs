@@ -40,7 +40,7 @@ namespace SporTime.ViewModel
                 view = context.LayoutInflater.Inflate(Resource.Layout.listview_reservation_item, null);
 
             view.FindViewById<TextView>(Resource.Id.tvFieldName).Text = item.FieldName;
-            view.FindViewById<TextView>(Resource.Id.tvDateTime).Text = $"{item.Start.Date} at {item.Start.TimeOfDay}";
+            view.FindViewById<TextView>(Resource.Id.tvDateTime).Text = $"{item.StartingTime.Date} at {item.StartingTime.TimeOfDay}";
 
             var btnModify = view.FindViewById<Button>(Resource.Id.btnDelete);
 

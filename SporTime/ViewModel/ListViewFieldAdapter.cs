@@ -34,7 +34,7 @@ namespace SporTime.ViewModel
             var view = convertView ?? context.LayoutInflater.Inflate(Resource.Layout.listview_field_item, null);
 
             view.FindViewById<TextView>(Resource.Id.tvFieldName).Text = field.Name;
-            view.FindViewById<TextView>(Resource.Id.tvSportType).Text = field.SportType;
+            //view.FindViewById<TextView>(Resource.Id.tvSportType).Text = field.SportType;
 
             var btnAvailability = view.FindViewById<Button>(Resource.Id.btnAvailability);
             btnAvailability.Click += (s, e) =>
