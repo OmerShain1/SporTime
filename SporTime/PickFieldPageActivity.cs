@@ -6,6 +6,7 @@ using SporTime.Model;
 using SporTime.ViewModel;
 using System.Collections.Generic;
 using System.Linq; // Required for .Where()
+using SporTime.Service;
 
 namespace SporTime
 {
@@ -19,7 +20,9 @@ namespace SporTime
         
         FieldAdapter adapter;
         List<Field> allFields;       // The master list (data)
-        List<Field> displayedFields; // The filtered list (data)
+        List<Field> displayedFields;
+
+        ApiService apiService = new ApiService();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -28,28 +31,38 @@ namespace SporTime
 
             lvFields = FindViewById<ListView>(Resource.Id.lvFields);
 
+            InitializeList();
             InitializeViews();
 
+
             // FIX 2: Initialize the master data list here
-            allFields = new List<Field>
-            {
-                new Field { Field_Id = "12312", Name = "Arena Soccer 1" },
-                new Field { Field_Id = "3123", Name = "Main Tennis Court"},
-                new Field { Field_Id = "4444", Name = "Downtown Basketball"}
-            };
+            //allFields = new List<Field>
+            //{
+            //    new Field { Field_Id = "12312", Name = "Arena Soccer 1" },
+            //    new Field { Field_Id = "3123", Name = "Main Tennis Court"},
+            //    new Field { Field_Id = "4444", Name = "Downtown Basketball"}
+            //};
 
             // Initially, the displayed list is a copy of everything
-            displayedFields = new List<Field>(allFields);
+            //displayedFields = new List<Field>(allFields);
 
-            // FIX 3: Assign the adapter to the class variable 'adapter'
-            adapter = new FieldAdapter(this, displayedFields);
-            lvFields.Adapter = adapter;
+            
 
             InitializeNavigation();
         }
 
+        private async void InitializeList()
+        {
+            displayedFields = await apiService.GetFieldsAsync(); // Fetch all fields from the service
+
+            // FIX 3: Assign the adapter to the class variable 'adapter'
+            adapter = new FieldAdapter(this, displayedFields);
+            lvFields.Adapter = adapter;
+        }
+
         private void InitializeViews()
         {
+
             etSearch = FindViewById<EditText>(Resource.Id.etSearch);
             etSearch.TextChanged += etSearch_TextChanged;
         }
@@ -67,10 +80,13 @@ namespace SporTime
             else
             {
                 // FIX 4: Filter 'allFields' (the data), NOT 'lvFields' (the UI widget)
+                //displayedFields = allFields
+                //    .Where(field => field.Name.ToLower().Contains(query) ||
+                //                    field.SportType.ToLower().Contains(query))
+                //    .ToList();
+
                 displayedFields = allFields
-                    .Where(field => field.Name.ToLower().Contains(query) ||
-                                    field.SportType.ToLower().Contains(query))
-                    .ToList();
+                   .Where(field => field.Name.ToLower().Contains(query)).ToList();
             }
 
             // FIX 5: Now 'adapter' exists, so we can call UpdateList
