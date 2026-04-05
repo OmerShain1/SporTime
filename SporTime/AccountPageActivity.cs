@@ -3,7 +3,9 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using SporTime.Model;
+using SporTime.Service;
 using SporTime.ViewModel;
+using SporTime.Model;
 using System;
 
 namespace SporTime
@@ -15,6 +17,7 @@ namespace SporTime
         Button btnSave, btnLogout, btnDelete;
         LinearLayout navHome, navNew;
 
+        ApiService _apiService = new ApiService();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -65,8 +68,7 @@ namespace SporTime
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            // Logic to delete from PostgreSQL and Firebase
-            Toast.MakeText(this, "Account deletion requested", ToastLength.Long).Show();
+            _apiService.DeleteUserAsync(FireBaseHelper.UserId);
             StartActivity(typeof(MainActivity));
         }
         private void InitializeNavigation()

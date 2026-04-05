@@ -71,5 +71,12 @@ namespace SporTime.ViewModel
 
             return result.Token;
         }
+        public static async void DeleteUserAsync()
+        {
+            if (FirebaseAuth.Instance.CurrentUser == null)
+                return;
+            var javaTask = FirebaseAuth.Instance.CurrentUser.Delete();
+            await javaTask.AsAsync<Java.Lang.Object>();
+        }
     }
 }

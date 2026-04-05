@@ -74,6 +74,26 @@ namespace SporTime.Service
             }
         }
 
+        public async void DeleteUserAsync(string userId)
+        {
+            try
+            {
+                string url = $"http://192.168.1.57:8000/users/{userId}";
+                HttpResponseMessage response = await _httpClient.DeleteAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    Toast.MakeText(Application.Context, "User deleted successfully", ToastLength.Short).Show();
+                }
+                else
+                {
+                    Log.Debug("ApiService", $"Failed to delete user with ID: {userId}. Status code: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("ApiService", $"Error deleting user: {ex.Message}");
+            }
+        }
 
 
         public async Task<List<Reservation>> GetReservationsAsync(int fieldId)
