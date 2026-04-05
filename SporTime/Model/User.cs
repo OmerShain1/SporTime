@@ -15,7 +15,7 @@ namespace SporTime.Model
     public class User
     {
         [JsonProperty("user_id")]
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         [JsonProperty("email")]
         public string Email { get; set; }

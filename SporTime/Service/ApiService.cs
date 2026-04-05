@@ -1,4 +1,10 @@
-﻿using Android.App;
+﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using Android.App;
 using System.Threading.Tasks;
 using Android.Content;
 using Android.OS;
@@ -8,11 +14,6 @@ using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
 using SporTime.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using static Android.Gms.Common.Apis.Api;
 //147.236.126.156
 namespace SporTime.Service
@@ -59,7 +60,7 @@ namespace SporTime.Service
         {
             try
             {
-                string url = "http://192.168.1.578000/users";
+                string url = "http://192.168.1.57:8000/users";
                 HttpResponseMessage response = await _httpClient.PostAsync(url, new StringContent(
                     JsonConvert.SerializeObject(new { email, user_id }),
                     Encoding.UTF8,
@@ -91,6 +92,71 @@ namespace SporTime.Service
             catch (Exception ex)
             {
                 Log.Debug("ApiService", $"Error fetching reservations: {ex.Message}");
+            }
+            return new List<Reservation>();
+        }
+
+
+        public async Task<bool> CreateReservationAsync(string userId, int fieldId, DateTime startingTime)
+        {
+            try
+            {
+                string url = "http://192.168.1.57:8000/reservations";
+
+                var body = new
+                {
+                    user_id = userId,
+                    field_id = fieldId,
+                    starting_time = startingTime.ToString("yyyy-MM-ddTHH:mm:ss") // Format Python expects
+                };
+
+                HttpResponseMessage response = await _httpClient.PostAsync(url, new StringContent(
+                    JsonConvert.SerializeObject(body),
+                    Encoding.UTF8,
+                    "application/json"
+                ));
+
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("ApiService", $"Error creating reservation: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteReservationAsync(int reservationId)
+        {
+            try
+            {
+                string url = $"http://192.168.1.57:8000/reservations/{reservationId}";
+                HttpResponseMessage response = await _httpClient.DeleteAsync(url); // DELETE, not GET
+
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("ApiService", $"Error deleting reservation: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<List<Reservation>> GetUserReservationsAsync(string userId)
+        {
+            try
+            {
+                string url = $"http://192.168.1.57:8000/users/{userId}/reservations";
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Reservation>>(jsonResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("ApiService", $"Error fetching user reservations: {ex.Message}");
             }
             return new List<Reservation>();
         }

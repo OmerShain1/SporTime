@@ -156,31 +156,37 @@ namespace SporTime
             alert.SetTitle("Confirm Reservation");
             alert.SetMessage($"Do you want to book {selectedFieldName} on {selectedDate.ToShortDateString()} at {pickedTime}?");
 
-            alert.SetPositiveButton("OK", (senderAlert, args) => {
-                // --- THE NEW LOGIC STARTS HERE ---
+            alert.SetPositiveButton("OK", async (senderAlert, args) => {
+                // Build the DateTime to send to the API
+                // pickedTime looks like "10:00 - 11:00", we only need the start
+                string startTimeStr = pickedTime.Split(" - ")[0];
+                DateTime reservationDateTime = DateTime.ParseExact(
+                    $"{selectedDate.ToString("dd/MM/yyyy")} {startTimeStr}",
+                    "dd/MM/yyyy HH:mm",
+                    System.Globalization.CultureInfo.InvariantCulture
+                );
 
-                // 1. Create an Intent to return to the Main Page
-                var intent = new Intent(this, typeof(MainPageActivity));
+                // Get the current logged-in user's ID from Firebase
+                string userId = Firebase.Auth.FirebaseAuth.Instance.CurrentUser?.Uid ?? "unknown";
 
-                // 2. Add the "Extras" (the data packet)
-                
-                intent.PutExtra("FieldName", selectedFieldName);
-                intent.PutExtra("ReservationDate", selectedDate.ToString("dd/MM/yyyy"));
-                intent.PutExtra("ReservationTime", pickedTime);
+                bool success = await _apiService.CreateReservationAsync(userId, int.Parse(selectedFieldId), reservationDateTime);
 
-                // 3. Clear the Activity History
-                // This prevents the user from clicking 'Back' and seeing the time picker again
-                intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
+                if (success)
+                {
+                    Toast.MakeText(this, "Reservation created!", ToastLength.Short).Show();
 
-                // 4. Send the user home
-                StartActivity(intent);
-
-                // 5. Close this activity
-                Finish();
-            });
-
-            alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-                // Do nothing if they cancel
+                    var intent = new Intent(this, typeof(MainPageActivity));
+                    intent.PutExtra("FieldName", selectedFieldName);
+                    intent.PutExtra("ReservationDate", selectedDate.ToString("dd/MM/yyyy"));
+                    intent.PutExtra("ReservationTime", pickedTime);
+                    intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
+                    StartActivity(intent);
+                    Finish();
+                }
+                else
+                {
+                    Toast.MakeText(this, "Failed to create reservation. Try again.", ToastLength.Short).Show();
+                }
             });
 
             alert.Show();

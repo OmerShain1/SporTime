@@ -3,6 +3,8 @@ using Android.Views;
 using Android.Widget;
 using Java.Lang; // Required for Object
 using SporTime.Model;
+using SporTime.Service;
+using System;
 using System.Collections.Generic;
 
 namespace SporTime.ViewModel
@@ -26,7 +28,7 @@ namespace SporTime.ViewModel
         public override long GetItemId(int position) => position;
 
         // This is the specific method the error CS0534 was complaining about
-        public override Object GetItem(int position)
+        public override Java.Lang.Object GetItem(int position)
         {
             return null; // For simple lists, returning null is fine
         }
@@ -40,14 +42,29 @@ namespace SporTime.ViewModel
                 view = context.LayoutInflater.Inflate(Resource.Layout.listview_reservation_item, null);
 
             view.FindViewById<TextView>(Resource.Id.tvFieldName).Text = item.FieldName;
-            view.FindViewById<TextView>(Resource.Id.tvDateTime).Text = $"{item.StartingTime.Date} at {item.StartingTime.TimeOfDay}";
+            DateTime endTime = item.StartingTime.AddHours(1);
+
+            view.FindViewById<TextView>(Resource.Id.tvDateTime).Text =
+                $"{item.StartingTime.ToString("dd/MM/yyyy")} at {item.StartingTime.ToString("HH:mm")} - {endTime.ToString("HH:mm")}";
 
             var btnModify = view.FindViewById<Button>(Resource.Id.btnDelete);
 
             // Note: Use a standard delegate to avoid event bubbling issues in lists
             btnModify.Click -= BtnModify_Click; // Unsubscribe first to avoid multiple triggers
-            btnModify.Click += (s, e) => {
-                Toast.MakeText(context, "Deleting: " + item.FieldName, ToastLength.Short).Show();
+            btnModify.Click += async (s, e) => {
+                ApiService apiService = new ApiService();
+                bool success = await apiService.DeleteReservationAsync(item.ReservationId);
+
+                if (success)
+                {
+                    items.Remove(item);
+                    NotifyDataSetChanged();
+                    Toast.MakeText(context, "Reservation deleted", ToastLength.Short).Show();
+                }
+                else
+                {
+                    Toast.MakeText(context, "Failed to delete reservation", ToastLength.Short).Show();
+                }
             };
 
             return view;

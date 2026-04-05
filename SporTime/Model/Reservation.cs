@@ -22,7 +22,8 @@ namespace SporTime.Model
 
         public string FieldId { get; set; }
 
-        public string FieldName { get; set; } // this can maybe be used and maybe stored in database
+        [JsonProperty("field_name")]
+        public string FieldName { get; set; }
 
         // DateTime handles both the specific day and the time of the reservation
         [JsonProperty("starting_time")]

@@ -17,7 +17,7 @@ namespace SporTime
     public class SignInActivity : Activity
     {
         private const string TAG = "OmerApp";
-        string Email = "Omer@gmail.com", Password = "123456";
+        string Email = "1234@nga.com", Password = "123456";
         bool DebugMode = true;
         EditText UEmail, UPassword;
         Button btnSignIn, btnGoToSignUp;
