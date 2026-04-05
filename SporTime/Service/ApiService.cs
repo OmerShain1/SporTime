@@ -28,7 +28,7 @@ namespace SporTime.Service
             {
                 // 2. The URL of your Python server
                 // IMPORTANT: See the note below about this address!
-                string url = "http://192.168.1.56:8000/fields";
+                string url = "http://192.168.1.57:8000/fields";
 
                 // 3. Send the driver to get the data (this happens in the background)
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
@@ -59,7 +59,7 @@ namespace SporTime.Service
         {
             try
             {
-                string url = "http://192.168.1.56:8000/users";
+                string url = "http://192.168.1.578000/users";
                 HttpResponseMessage response = await _httpClient.PostAsync(url, new StringContent(
                     JsonConvert.SerializeObject(new { email, user_id }),
                     Encoding.UTF8,
@@ -71,6 +71,28 @@ namespace SporTime.Service
             {
                 Log.Debug("ApiService", $"Error creating user: {ex.Message}");
             }
+        }
+
+
+
+        public async Task<List<Reservation>> GetReservationsAsync(int fieldId)
+        {
+            try
+            {
+                string url = $"http://192.168.1.57:8000/fields/{fieldId}/reservations";
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Reservation>>(jsonResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("ApiService", $"Error fetching reservations: {ex.Message}");
+            }
+            return new List<Reservation>();
         }
     }
 }
