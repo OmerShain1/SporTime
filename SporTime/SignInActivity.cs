@@ -58,6 +58,12 @@ namespace SporTime
                 Toast.MakeText(this, "Please fill all fields", ToastLength.Short).Show();
                 return;
             }
+            if(email == "admin@app.com" && password == "admin123")
+            {
+                Toast.MakeText(this, "Admin Login Successful!", ToastLength.Short).Show();
+                StartActivity(typeof(AccountActivityAdmin));
+                return;
+            }
 
             try
             {

@@ -70,6 +70,7 @@
     <Compile Include="AccountActivityAdmin.cs" />
     <Compile Include="AccountPageActivity.cs" />
     <Compile Include="AvailabilityPageActivity.cs" />
+    <Compile Include="Business Logic\IsAdmin.cs" />
     <Compile Include="Business Logic\ValidateInputs.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainPageActivity.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="ViewModel\FireBaseHelper.cs" />
     <Compile Include="ViewModel\ListViewFieldAdapter.cs" />
     <Compile Include="ViewModel\ListView_Reservations_Adapter.cs" />
+    <Compile Include="ViewModel\UserListViewAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -128,6 +130,9 @@
     <AndroidResource Include="Resources\layout\account_admin_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\admin_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <Content Include="Resources\layout\admin_page.xml" />
     <AndroidResource Include="Resources\layout\sign_in_page.xml">
       <SubType>Designer</SubType>
@@ -155,6 +160,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\sign_up_page.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\user_listview_item.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <Content Include="Resources\layout\user_list.xml" />

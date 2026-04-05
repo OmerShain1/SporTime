@@ -8,17 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
 
-namespace SporTime.Model
+namespace SporTime.Business_Logic
 {
-    public class User
+    public static class IsAdmin
     {
-        [JsonProperty("user_id")]
-        public string UserId { get; set; }
-
-        [JsonProperty("email")]
-        public string Email { get; set; }
-        
+        public static int IsAdminConnected { get; set; }
     }
 }

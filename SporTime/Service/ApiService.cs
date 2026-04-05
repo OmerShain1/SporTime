@@ -56,6 +56,26 @@ namespace SporTime.Service
         }
 
 
+
+        public async Task<List<User>> GetUsersAsync()
+        {
+            try
+            {
+                string url = "http://192.168.1.57:8000/users";
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<User>>(jsonResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("ApiService", $"Error fetching users: {ex.Message}");
+            }
+            return new List<User>();
+        }
+
         public async void CreateUserAsync(string email, string user_id)
         {
             try
