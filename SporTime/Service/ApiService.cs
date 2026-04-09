@@ -29,7 +29,7 @@ namespace SporTime.Service
             {
                 // 2. The URL of your Python server
                 // IMPORTANT: See the note below about this address!
-                string url = "http://192.168.1.57:8000/fields";
+                string url = "https://sportime-backend.onrender.com/fields";
 
                 // 3. Send the driver to get the data (this happens in the background)
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
@@ -61,7 +61,7 @@ namespace SporTime.Service
         {
             try
             {
-                string url = "http://192.168.1.57:8000/users";
+                string url = "https://sportime-backend.onrender.com/users";
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
@@ -80,7 +80,7 @@ namespace SporTime.Service
         {
             try
             {
-                string url = "http://192.168.1.57:8000/users";
+                string url = "https://sportime-backend.onrender.com/users";
                 HttpResponseMessage response = await _httpClient.PostAsync(url, new StringContent(
                     JsonConvert.SerializeObject(new { email, user_id }),
                     Encoding.UTF8,
@@ -98,7 +98,7 @@ namespace SporTime.Service
         {
             try
             {
-                string url = $"http://192.168.1.57:8000/users/{userId}";
+                string url = $"https://sportime-backend.onrender.com/users/{userId}";
                 HttpResponseMessage response = await _httpClient.DeleteAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
@@ -120,7 +120,7 @@ namespace SporTime.Service
         {
             try
             {
-                string url = $"http://192.168.1.57:8000/fields/{fieldId}/reservations";
+                string url = $"https://sportime-backend.onrender.com/fields/{fieldId}/reservations";
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
@@ -141,7 +141,7 @@ namespace SporTime.Service
         {
             try
             {
-                string url = "http://192.168.1.57:8000/reservations";
+                string url = "https://sportime-backend.onrender.com/reservations";
 
                 var body = new
                 {
@@ -169,7 +169,7 @@ namespace SporTime.Service
         {
             try
             {
-                string url = $"http://192.168.1.57:8000/reservations/{reservationId}";
+                string url = $"https://sportime-backend.onrender.com/reservations/{reservationId}";
                 HttpResponseMessage response = await _httpClient.DeleteAsync(url); // DELETE, not GET
 
                 return response.IsSuccessStatusCode;
@@ -185,7 +185,7 @@ namespace SporTime.Service
         {
             try
             {
-                string url = $"http://192.168.1.57:8000/users/{userId}/reservations";
+                string url = $"https://sportime-backend.onrender.com/users/{userId}/reservations";
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
