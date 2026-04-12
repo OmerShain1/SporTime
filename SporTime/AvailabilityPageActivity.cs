@@ -169,9 +169,10 @@ namespace SporTime
                 // Get the current logged-in user's ID from Firebase
                 string userId = Firebase.Auth.FirebaseAuth.Instance.CurrentUser?.Uid ?? "unknown";
 
-                bool success = await _apiService.CreateReservationAsync(userId, int.Parse(selectedFieldId), reservationDateTime);
+                var result = await _apiService.CreateReservationAsync(userId, int.Parse(selectedFieldId), reservationDateTime);
 
-                if (success)
+
+                if (result.Success)
                 {
                     Toast.MakeText(this, "Reservation created!", ToastLength.Short).Show();
 

@@ -137,7 +137,7 @@ namespace SporTime.Service
         }
 
 
-        public async Task<bool> CreateReservationAsync(string userId, int fieldId, DateTime startingTime)
+        public async Task<(bool Success, string ErrorMessage)> CreateReservationAsync(string userId, int fieldId, DateTime startingTime)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace SporTime.Service
                 {
                     user_id = userId,
                     field_id = fieldId,
-                    starting_time = startingTime.ToString("yyyy-MM-ddTHH:mm:ss") // Format Python expects
+                    starting_time = startingTime.ToString("yyyy-MM-ddTHH:mm:ss")
                 };
 
                 HttpResponseMessage response = await _httpClient.PostAsync(url, new StringContent(
@@ -156,12 +156,20 @@ namespace SporTime.Service
                     "application/json"
                 ));
 
-                return response.IsSuccessStatusCode;
+                if (response.IsSuccessStatusCode)
+                    return (true, null);
+
+                // Read the error detail from the backend
+                string errorJson = await response.Content.ReadAsStringAsync();
+                var errorObj = JsonConvert.DeserializeObject<dynamic>(errorJson);
+                string detail = errorObj?.detail ?? "Failed to create reservation";
+
+                return (false, detail);
             }
             catch (Exception ex)
             {
                 Log.Debug("ApiService", $"Error creating reservation: {ex.Message}");
-                return false;
+                return (false, "An unexpected error occurred");
             }
         }
 
