@@ -161,8 +161,8 @@ namespace SporTime.Service
 
                 // Read the error detail from the backend
                 string errorJson = await response.Content.ReadAsStringAsync();
-                var errorObj = JsonConvert.DeserializeObject<dynamic>(errorJson);
-                string detail = errorObj?.detail ?? "Failed to create reservation";
+                var errorObj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(errorJson);
+                string detail = errorObj?["detail"]?.ToString() ?? "Failed to create reservation";
 
                 return (false, detail);
             }

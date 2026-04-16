@@ -186,7 +186,7 @@ namespace SporTime
                 }
                 else
                 {
-                    Toast.MakeText(this, "Failed to create reservation. Try again.", ToastLength.Short).Show();
+                    Toast.MakeText(this, "Too Many Active Reservations", ToastLength.Short).Show();
                 }
             });
 
