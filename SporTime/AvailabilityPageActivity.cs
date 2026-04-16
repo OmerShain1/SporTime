@@ -130,8 +130,13 @@ namespace SporTime
 
             while (currentSlot < endTime)
             {
-                // Only add the slot if its hour is NOT in the booked list
-                if (!bookedHours.Contains(currentSlot.Hours))
+                // Build the slot's full DateTime so we can compare with "now"
+                DateTime slotDateTime = selectedDate.Date.Add(currentSlot);
+
+                bool isInPast = slotDateTime <= DateTime.Now;
+                bool isBooked = bookedHours.Contains(currentSlot.Hours);
+
+                if (!isBooked && !isInPast)
                 {
                     TimeSpan nextSlot = currentSlot.Add(slotDuration);
                     string slotText = $"{currentSlot.ToString(@"hh\:mm")} - {nextSlot.ToString(@"hh\:mm")}";
