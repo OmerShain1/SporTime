@@ -61,7 +61,7 @@ namespace SporTime
             if(email == "admin@app.com" && password == "admin123")
             {
                 Toast.MakeText(this, "Admin Login Successful!", ToastLength.Short).Show();
-                StartActivity(typeof(AccountActivityAdmin));
+                StartActivity(typeof(AdminMainPage));
                 return;
             }
 

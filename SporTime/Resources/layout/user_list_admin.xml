@@ -15,68 +15,17 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp" />
-	
-	<ListView
-    android:id="@+id/lvUsers"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
 
-	<!-- Scrollable main content -->
-	<ScrollView
-        android:id="@+id/mainContent"
+	<!-- ListView for users -->
+	<ListView
+        android:id="@+id/userListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNav"
         android:layout_below="@id/topLogo"
-        android:padding="16dp">
-
-		<LinearLayout
-            android:id="@+id/contentLayout"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-
-			<!-- Admin Page Title -->
-			<TextView
-                android:id="@+id/adminTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Admin Dashboard"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#222222"
-                android:layout_marginBottom="32dp"
-                android:gravity="center" />
-
-			<!-- Users List Button -->
-			<Button
-                android:id="@+id/btnUsersList"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Users List"
-                android:textAllCaps="false"
-                android:textSize="18sp"
-                android:backgroundTint="#1E88E5"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="20dp"
-                android:stateListAnimator="@null" />
-
-			<!-- Fields List Button -->
-			<Button
-                android:id="@+id/btnFieldsList"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Fields List"
-                android:textAllCaps="false"
-                android:textSize="18sp"
-                android:backgroundTint="#1E88E5"
-                android:textColor="#FFFFFF"
-                android:stateListAnimator="@null" />
-
-		</LinearLayout>
-
-	</ScrollView>
+        android:layout_above="@+id/bottomNav"
+        android:divider="#CCCCCC"
+        android:dividerHeight="1dp"
+        android:padding="8dp" />
 
 	<!-- Fixed bottom navigation bar -->
 	<LinearLayout
@@ -99,7 +48,7 @@
             android:gravity="center">
 
 			<ImageView
-                android:id="@+id/home"
+                android:id="@+id/homeIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/home"
@@ -125,7 +74,7 @@
             android:gravity="center">
 
 			<ImageView
-                android:id="@+id/image_calander"
+                android:id="@+id/newResIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/calendar"
@@ -151,7 +100,7 @@
             android:gravity="center">
 
 			<ImageView
-                android:id="@+id/image_account"
+                android:id="@+id/accountIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/account"

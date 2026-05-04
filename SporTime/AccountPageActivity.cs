@@ -13,8 +13,8 @@ namespace SporTime
     [Activity(Label = "Account")]
     public class AccountPageActivity : Activity
     {
-        EditText etFirstName, etLastName, etEmail;
-        Button btnSave, btnLogout, btnDelete;
+
+        Button btnLogout, btnDelete;
         LinearLayout navHome, navNew;
 
         ApiService _apiService = new ApiService();
@@ -24,16 +24,12 @@ namespace SporTime
             SetContentView(Resource.Layout.account_page);
 
             InitializeViews();
-            LoadUserData();
             InitializeNavigation();
         }
 
         private void InitializeViews()
         {
-            etFirstName = FindViewById<EditText>(Resource.Id.etFirstName);
-            etLastName = FindViewById<EditText>(Resource.Id.etLastName);
-            etEmail = FindViewById<EditText>(Resource.Id.etEmail);
-            btnSave = FindViewById<Button>(Resource.Id.btnSave);
+
             btnLogout = FindViewById<Button>(Resource.Id.btnLogout);
             btnDelete = FindViewById<Button>(Resource.Id.btnDelete);
 
@@ -41,7 +37,7 @@ namespace SporTime
             navHome = FindViewById<LinearLayout>(Resource.Id.navHome);
             navNew = FindViewById<LinearLayout>(Resource.Id.navNew);
 
-            btnSave.Click += BtnSave_Click;
+            
             btnLogout.Click += BtnLogout_Click;
             btnDelete.Click += BtnDelete_Click;
 
@@ -49,11 +45,7 @@ namespace SporTime
             navNew.Click += (s, e) => { /* Start NewReservationActivity */ };
         }
 
-        private void LoadUserData()
-        {
-            //Get user data from Backend
-        }
-
+        
         private void BtnSave_Click(object sender, EventArgs e)
         {
             // Logic to send updated User object to your ASP.NET Backend

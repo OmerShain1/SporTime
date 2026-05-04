@@ -33,15 +33,7 @@
             android:textColor="#222222"
             android:layout_marginBottom="24dp" />
 
-		<!-- Username -->
-		<EditText
-            android:id="@+id/etUsername"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="Username"
-            android:padding="12dp"
-            android:background="@android:drawable/edit_text"
-            android:layout_marginBottom="16dp" />
+		
 
 		<!-- Email -->
 		<EditText
@@ -54,16 +46,7 @@
             android:background="@android:drawable/edit_text"
             android:layout_marginBottom="16dp" />
 
-		<!-- Phone Number -->
-		<EditText
-            android:id="@+id/etPhone"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="Phone Number"
-            android:inputType="phone"
-            android:padding="12dp"
-            android:background="@android:drawable/edit_text"
-            android:layout_marginBottom="16dp" />
+		
 
 		<!-- Password -->
 		<EditText

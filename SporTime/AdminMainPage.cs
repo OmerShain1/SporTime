@@ -15,10 +15,9 @@ using System.Text;
 namespace SporTime
 {
     [Activity(Label = "AccountActivityAdmin")]
-    public class AccountActivityAdmin : Activity
+    public class AdminMainPage : Activity
     {
-        ListView lvUsers;
-        ApiService _apiService = new ApiService();
+        Button BtnUserList;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -28,9 +27,19 @@ namespace SporTime
 
         private async void InitializeViews()
         {
-            lvUsers = FindViewById<ListView>(Resource.Id.lvUsers);
-            List<User> users = await _apiService.GetUsersAsync();
-            lvUsers.Adapter = new UserListViewAdapter(this, users);
+            BtnUserList = FindViewById<Button>(Resource.Id.btnUsersList);
+            
+
+            BtnUserList.Click += BtnUsersListClick;
+            
         }
+
+        
+
+        private void BtnUsersListClick(object sender, EventArgs e)
+        {
+            StartActivity(typeof(AdminUsersListActivity));
+        }
+        
     }
 }
