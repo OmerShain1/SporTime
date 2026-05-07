@@ -61,6 +61,7 @@ namespace SporTime
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             _apiService.DeleteUserAsync(FireBaseHelper.UserId);
+            FireBaseHelper.DeleteUserAsync();
             StartActivity(typeof(MainActivity));
         }
         private void InitializeNavigation()
