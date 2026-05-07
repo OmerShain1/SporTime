@@ -35,17 +35,7 @@ namespace SporTime
             InitializeViews();
 
 
-            // FIX 2: Initialize the master data list here
-            //allFields = new List<Field>
-            //{
-            //    new Field { Field_Id = "12312", Name = "Arena Soccer 1" },
-            //    new Field { Field_Id = "3123", Name = "Main Tennis Court"},
-            //    new Field { Field_Id = "4444", Name = "Downtown Basketball"}
-            //};
-
-            // Initially, the displayed list is a copy of everything
-            //displayedFields = new List<Field>(allFields);
-
+           
             
 
             InitializeNavigation();
@@ -54,6 +44,7 @@ namespace SporTime
         private async void InitializeList()
         {
             displayedFields = await apiService.GetFieldsAsync(); // Fetch all fields from the service
+            allFields = new List<Field>(displayedFields); //copy of the original list to keep unfiltered data
 
             // FIX 3: Assign the adapter to the class variable 'adapter'
             adapter = new FieldAdapter(this, displayedFields);
@@ -74,8 +65,9 @@ namespace SporTime
 
             if (string.IsNullOrEmpty(query))
             {
-                // If search is empty, reset to show everything
+                
                 displayedFields = new List<Field>(allFields);
+                
             }
             else
             {
@@ -86,7 +78,8 @@ namespace SporTime
                 //    .ToList();
 
                 displayedFields = allFields
-                   .Where(field => field.Name.ToLower().Contains(query)).ToList();
+                .Where(field => field.Name.ToLower().Contains(query)).ToList();
+
             }
 
             // FIX 5: Now 'adapter' exists, so we can call UpdateList

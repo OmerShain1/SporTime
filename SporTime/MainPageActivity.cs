@@ -36,7 +36,7 @@ namespace SporTime
             InitializeNavigation();
             await LoadUserReservations();
 
-            //ProcessIntentData(Intent);
+            
             lvReservations.Adapter = new ReservationAdapter(this, myReservations);
         }
 
@@ -48,45 +48,7 @@ namespace SporTime
             myReservations = await _apiService.GetUserReservationsAsync(userId);
         }
 
-        //protected override void OnNewIntent(Intent intent)
-        //{
-        //    base.OnNewIntent(intent);
-        //    Intent = intent;
-        //    ProcessIntentData(intent);
-        //    ((BaseAdapter)lvReservations.Adapter).NotifyDataSetChanged();
-        //}
-
-        //private void ProcessIntentData(Intent intent)
-        //{
-        //    var fieldName = intent.GetStringExtra("FieldName");
-        //    var dateStr = intent.GetStringExtra("ReservationDate");
-        //    var timeStr = intent.GetStringExtra("ReservationTime");
-
-        //    if (!string.IsNullOrEmpty(fieldName) && !string.IsNullOrEmpty(dateStr) && !string.IsNullOrEmpty(timeStr))
-        //    {
-        //        try
-        //        {
-        //            var times = timeStr.Split(" - ");
-        //            DateTime startParsed = DateTime.ParseExact(
-        //                $"{dateStr} {times[0]}", "dd/MM/yyyy HH:mm",
-        //                System.Globalization.CultureInfo.InvariantCulture);
-
-        //            myReservations.Add(new Reservation
-        //            {
-        //                FieldName = fieldName,
-        //                StartingTime = startParsed
-        //            });
-
-        //            intent.RemoveExtra("FieldName");
-        //            intent.RemoveExtra("ReservationDate");
-        //            intent.RemoveExtra("ReservationTime");
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Android.Util.Log.Error("SporTime", "Parsing Error: " + ex.Message);
-        //        }
-        //    }
-        //}
+        
 
         private void InitializeNavigation()
         {

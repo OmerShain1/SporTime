@@ -181,14 +181,6 @@ namespace SporTime
                 {
                     Toast.MakeText(this, "Reservation created!", ToastLength.Short).Show();
 
-                    //var intent = new Intent(this, typeof(MainPageActivity));
-                    //intent.PutExtra("FieldName", selectedFieldName);
-                    //intent.PutExtra("ReservationDate", selectedDate.ToString("dd/MM/yyyy"));
-                    //intent.PutExtra("ReservationTime", pickedTime);
-                    //intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
-                    //StartActivity(intent);
-                    //Finish();
-
                     StartActivity(typeof(MainPageActivity));
                 }
                 else
