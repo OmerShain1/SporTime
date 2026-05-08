@@ -1,7 +1,9 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Views;
 using Android.Widget;
 using SporTime.Model;
+using SporTime.ViewModel;
 using SporTime.Service;
 using System.Collections.Generic;
 
@@ -40,8 +42,9 @@ namespace SporTime.ViewModel
             {
                 ApiService apiService = new ApiService();
                 apiService.DeleteUserAsync(item.UserId);
+                FireBaseHelper.DeleteUserAsync();
 
-                
+
             };
 
             return view;
